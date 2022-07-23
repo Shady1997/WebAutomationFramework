@@ -84,5 +84,6 @@
 	<classpathentry kind="lib" path="C:/Users/G525585/eclipse-workspace/WebAutomationFramework/src/test/resources/poi library/auxiliary/xml-apis-ext-1.3.04.jar"/>
 	<classpathentry kind="lib" path="C:/Users/G525585/eclipse-workspace/WebAutomationFramework/src/test/resources/poi library/auxiliary/xmlgraphics-commons-2.6.jar"/>
 	<classpathentry kind="lib" path="C:/Users/G525585/eclipse-workspace/WebAutomationFramework/src/test/resources/poi library/auxiliary/xmlsec-2.3.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/G525585/.p2/pool/plugins/org.testng_7.4.0.r202105021533.jar" sourcepath="C:/Users/G525585/.p2/pool/plugins/org.testng.source_7.4.0.r202105021533.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
