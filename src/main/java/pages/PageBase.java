@@ -12,6 +12,7 @@ import java.util.Random;
 
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -20,6 +21,8 @@ import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.io.FileHandler;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 import database.DatabaseConnection;
@@ -31,6 +34,21 @@ public class PageBase {
 		Actions actions = new Actions(driver);
 		actions.moveToElement(element);
 		actions.perform();
+	}
+
+	// explicit wait until web element visibility
+	public void explicitWait(WebDriver driver, String webElement) {
+		// explicit wait - to wait for the compose button to be click-able
+		WebDriverWait wait = new WebDriverWait(driver, 30);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(webElement)));
+	}
+
+	// hover over web element
+	public void hoverWebElement(WebDriver driver, WebElement element) {
+		// Creating object of an Actions class
+		Actions action = new Actions(driver);
+		// Performing the mouse hover action on the target element.
+		action.moveToElement(element).perform();
 	}
 
 	// use robot library for keyboard control

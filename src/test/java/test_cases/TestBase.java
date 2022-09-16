@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
+import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -65,7 +66,8 @@ public class TestBase {
 		}
 
 		js = (JavascriptExecutor) driver;
-		loginPage = new HomePage(driver);
+		// Set Driver wait
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 	}
 
 	@Test(priority = 1, groups = "smoke", description = "add page description")
