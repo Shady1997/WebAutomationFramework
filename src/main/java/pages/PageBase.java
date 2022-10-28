@@ -37,11 +37,11 @@ public class PageBase {
 	}
 
 	// explicit wait until web element visibility
-	public void explicitWait(WebDriver driver, String webElement) {
-		// explicit wait - to wait for the compose button to be click-able
-		WebDriverWait wait = new WebDriverWait(driver, 30);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(webElement)));
-	}
+//	public void explicitWait(WebDriver driver, String webElement) {
+//		// explicit wait - to wait for the compose button to be click-able
+//		WebDriverWait wait = new WebDriverWait(driver, 30);
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(webElement)));
+//	}
 
 	// hover over web element
 	public void hoverWebElement(WebDriver driver, WebElement element) {
