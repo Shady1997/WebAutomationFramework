@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DecimalFormat;
+import java.time.Duration;
 import java.util.Random;
 
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -21,6 +22,7 @@ import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.io.FileHandler;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -36,12 +38,24 @@ public class PageBase {
 		actions.perform();
 	}
 
+	// handle wait
+	public static void waitForPageLoad(WebDriver driver) {
+		System.out.println("Wating for ready state complete");
+		(new WebDriverWait(driver, Duration.ofSeconds(20))).until(new ExpectedCondition<Boolean>() {
+			public Boolean apply(WebDriver d) {
+				JavascriptExecutor js = (JavascriptExecutor) d;
+				String readyState = js.executeScript("return document.readyState").toString();
+				System.out.println("Ready State: " + readyState);
+				return (Boolean) readyState.equals("complete");
+			}
+		});
+	}
 	// explicit wait until web element visibility
-//	public void explicitWait(WebDriver driver, String webElement) {
-//		// explicit wait - to wait for the compose button to be click-able
-//		WebDriverWait wait = new WebDriverWait(driver, 30);
-//		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(webElement)));
-//	}
+	public void explicitWait(WebDriver driver, String webElement) {
+		// explicit wait - to wait for the compose button to be click-able
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(webElement)));
+	}
 
 	// hover over web element
 	public void hoverWebElement(WebDriver driver, WebElement element) {
