@@ -1,0 +1,68 @@
+cloud application testcases
+There are several types of test cases that can be used to test a cloud application, including:
+
+Functional testing: This type of testing verifies that the application functions as expected and meets the requirements.
+
+Performance testing: This type of testing measures the application's ability to handle a high load of users and transactions.
+
+Scalability testing: This type of testing verifies that the application can scale up or down as needed.
+
+Security testing: This type of testing verifies that the application is secure and that data is protected.
+
+Compatibility testing: This type of testing verifies that the application is compatible with different browsers, devices, and operating systems.
+
+Recovery testing: This type of testing verifies that the application can recover from failures and that data is not lost.
+
+Regression testing: This type of testing verifies that changes made to the application do not break existing functionality.
+
+Stress testing: This type of testing verifies that the application can handle extreme conditions and high loads.
+
+
+
+
+dyzinemi@lyft.live
+cloud application login testcases
+There are several test cases that can be used to test the login functionality of a cloud application, including:
+
+Positive testing: This type of testing verifies that the login functionality works as expected when the correct username and password are provided.
+
+Negative testing: This type of testing verifies that the login functionality handles incorrect usernames and passwords correctly, such as displaying an error message.
+
+Boundary testing: This type of testing verifies that the login functionality handles the maximum and minimum values for the username and password fields correctly.
+
+Usability testing: This type of testing verifies that the login page is user-friendly and easy to navigate.
+
+Security testing: This type of testing verifies that the login functionality is secure and that data is protected.
+
+Performance testing: This type of testing measures the time it takes for the login page to load and the time it takes for a user to be logged in.
+
+Compatibility testing: This type of testing verifies that the login page is compatible with different browsers, devices, and operating systems.
+
+Recovery testing: This type of testing verifies that the login functionality can recover from failures and that data is not lost.
+
+
+
+
+dyzinemi@lyft.live
+cloud application search create update delete user testcases
+There are several test cases that can be used to test the user search, create, update, and delete functionality of a cloud application, including:
+
+Search functionality testing: This type of testing verifies that the user search functionality works as expected and returns the correct results based on the search criteria.
+
+Create functionality testing: This type of testing verifies that the create user functionality works as expected and that new users are added to the system correctly.
+
+Update functionality testing: This type of testing verifies that the update user functionality works as expected and that user information is updated correctly.
+
+Delete functionality testing: This type of testing verifies that the delete user functionality works as expected and that users are deleted from the system correctly.
+
+Positive testing: This type of testing verifies that the user search, create, update, and delete functionality works as expected when the correct input is provided.
+
+Negative testing: This type of testing verifies that the user search, create, update, and delete functionality handles incorrect input correctly, such as displaying an error message.
+
+Security testing: This type of testing verifies that the user search, create, update, and delete functionality is secure and that data is protected.
+
+Performance testing: This type of testing measures the time it takes for the search, create, update, and delete pages to load, and the time it takes for a user to be created, updated or deleted.
+
+Access controls testing: This type of testing verifies that only authorized users are able to perform the operation(search,create,update,delete).
+
+Data validation testing: This type of testing verifies that the system will validate the data before creating, updating or deleting the user, and the system will handle invalid data properly.

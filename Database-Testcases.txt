@@ -1,0 +1,15 @@
+database testcases checklists
+A database test case is a set of conditions or inputs used to determine whether a database or its components function as intended. A checklist is a list of items or tasks that need to be completed, often used as a reminder or for quality assurance.
+
+A database test case checklist typically includes items such as:
+
+verifying that data is properly stored and retrieved
+testing for data integrity and consistency
+testing for proper handling of null or missing data
+testing for proper handling of constraints and key relationships
+testing for proper handling of concurrent access and transactions
+testing for proper handling of backups and recovery
+testing for performance and scalability
+It's also important to include negative test cases to check the robustness of the system against unexpected inputs and edge cases.
+
+It's always good to have a checklist of items to test against as it helps to ensure that all important aspects of the database are tested and also helps to keep track of the progress of testing.

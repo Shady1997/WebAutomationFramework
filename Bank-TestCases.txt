@@ -1,0 +1,80 @@
+bank web application testcases
+Some common test cases for a bank web application may include:
+
+Verify that the login process is secure and that user information is properly encrypted.
+Test that users can view their account balances and transaction history.
+Ensure that users can transfer funds between accounts and to external accounts.
+Verify that users can make payments and set up recurring payments.
+Test that the application can handle multiple concurrent users and that it can handle high traffic.
+Ensure that the application can handle errors and exceptions gracefully, such as invalid input or a lost internet connection.
+Test that the application can handle different types of accounts, such as savings, checking, and credit card accounts.
+Verify that users can update their personal information, such as their address or phone number.
+Test that the application can handle different types of transactions, such as deposits, withdrawals, and transfers.
+Verify that the application is accessible for users with disabilities and that it is compatible with assistive technologies.
+Note: This is not an exhaustive list, it will vary based on the requirement of the application.
+
+
+
+
+dyzinemi@lyft.live
+create update delete seach make deposite cancel deposite make withdraw cancel withdraw testcase for bank web application
+Some test cases for creating, updating, deleting, searching, making a deposit, canceling a deposit, making a withdrawal, and canceling a withdrawal in a bank web application may include:
+
+Verify that users can create a new account and that the account is properly created and linked to the user's information.
+Test that users can update their account information, such as their address or phone number, and that the updates are properly saved.
+Ensure that users can delete their account and that all associated information is properly removed.
+Verify that users can search for transactions and account information by different criteria, such as date range or amount.
+Test that users can make a deposit to their account and that the deposit is properly recorded and added to the account balance.
+Ensure that users can cancel a deposit before it is processed and that the deposit is properly removed and the account balance is not affected.
+Verify that users can make a withdrawal from their account and that the withdrawal is properly recorded and subtracted from the account balance.
+Test that users can cancel a withdrawal before it is processed and that the withdrawal is properly removed and the account balance is not affected.
+Ensure that the application can handle multiple concurrent transactions and that it can handle high traffic.
+Verify that the application can handle errors and exceptions gracefully, such as invalid input or a lost internet connection, in all the above test cases.
+
+
+
+dyzinemi@lyft.live
+create update delete seach make deposite cancel deposite make withdraw cancel withdraw testcase for bank mobile application
+Some test cases for creating, updating, deleting, searching, making a deposit, canceling a deposit, making a withdrawal, and canceling a withdrawal in a bank mobile application may include:
+
+Verify that users can create a new account and that the account is properly created and linked to the user's information.
+Test that users can update their account information, such as their address or phone number, and that the updates are properly saved.
+Ensure that users can delete their account and that all associated information is properly removed.
+Verify that users can search for transactions and account information by different criteria, such as date range or amount.
+Test that users can make a deposit to their account using the mobile camera to scan checks and that the deposit is properly recorded and added to the account balance.
+Ensure that users can cancel a deposit before it is processed and that the deposit is properly removed and the account balance is not affected.
+Verify that users can make a withdrawal from their account and that the withdrawal is properly recorded and subtracted from the account balance.
+Test that users can cancel a withdrawal before it is processed and that the withdrawal is properly removed and the account balance is not affected.
+Ensure that the application can handle different types of errors and exceptions, such as invalid input or a lost internet connection, in all the above test cases.
+Verify that the application is properly optimized for mobile devices, including different screen sizes and resolutions.
+Test the mobile app's compatibility with different mobile operating systems like iOS and Android.
+Ensure that the mobile app's performance and usability on different mobile network conditions.
+Verify the security of the mobile app by testing the app's handling of user's personal and financial information.
+Test the mobile apps handling of push notifications and SMS based OTP(One-time password)
+Ensure the mobile app can handle low battery and memory conditions.
+
+
+
+dyzinemi@lyft.live
+concurrent transaction bank application testcases
+Here are a few test cases for concurrent transactions in a bank application:
+
+Verify that multiple users can open the application and login simultaneously without any issues.
+
+Verify that multiple users can view their account balance at the same time without any errors.
+
+Test for concurrent deposits, withdrawals, and transfers to ensure that the correct account balance is updated for each user.
+
+Verify that the application can handle multiple users trying to access the same account at the same time, and that it properly locks the account to prevent unauthorized access.
+
+Test for race conditions that can occur when multiple users attempt to update the same account simultaneously.
+
+Test the system's behavior when a user is in the middle of a transaction and the connection to the bank's server is lost.
+
+Test the system's behavior when a user attempts to perform an action on an account that does not exist or on which they do not have sufficient permissions.
+
+Test the system's behavior when a user attempts to perform an action on an account that has been locked or closed.
+
+Test the system's ability to handle large number of concurrent transactions and ensure that it does not crash or slow down significantly.
+
+Verify that all transactions are properly logged and that the logs can be used to reconstruct the state of the system in case of errors or disputes.
