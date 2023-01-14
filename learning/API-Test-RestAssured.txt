@@ -1,0 +1,884 @@
+api security testcase
+API security testing is a process of evaluating the security of an API by identifying and assessing potential vulnerabilities. Some common test cases for API security include:
+
+Authentication and Authorization: Testing to ensure that only authorized users can access the API and that the API properly validates user credentials.
+
+Input validation: Testing to ensure that the API properly validates user input to prevent injection attacks.
+
+Access controls: Testing to ensure that the API properly enforces access controls, such as rate limiting and IP whitelisting.
+
+Error handling: Testing to ensure that the API returns appropriate error messages and does not reveal sensitive information in the event of an error.
+
+Data encryption: Testing to ensure that data transmitted via the API is properly encrypted to protect against eavesdropping.
+
+Security vulnerabilities scanning with tools like OWASP ZAP, Burp Suite, Nessus etc.
+
+These are just a few examples and the actual test cases will vary depending on the specific API and the threat model it is facing.
+==============================================================================================================================================================================
+information security  testcases
+Information security testing is a process of evaluating the security of an organization's information systems, networks, and data. Some common test cases for information security include:
+
+Vulnerability scanning: Testing to identify known vulnerabilities in systems, networks, and applications.
+
+Penetration testing: Attempting to simulate real-world attacks on the organization's systems, networks, and applications.
+
+Social engineering testing: Attempting to trick employees into divulging sensitive information or performing actions that compromise security.
+
+Compliance testing: Ensuring that the organization's systems, networks, and applications meet relevant security standards, such as HIPAA, PCI-DSS, ISO 27001.
+
+Risk assessment: Analyzing the potential risks to the organization's systems, networks, and data, and identifying controls to mitigate those risks.
+
+Incident response testing: Testing the organization's incident response plan to ensure that it is effective in the event of a security breach.
+
+Data encryption testing: Testing the encryption of data to ensure that it is properly protected at rest and in transit.
+
+Network security testing: testing the security of the organization's network infrastructure, including firewall, intrusion detection/prevention systems, VPNs, and other network security devices.
+
+These are some examples and the actual test cases will vary depending on the specific organization and threat model it is facing.
+===========================================================================================================================================================================
+api security test examble restassured
+API security testing is an important aspect of ensuring that your API is secure and protected against potential threats. One popular library for API security testing in Java is REST-Assured. Here is an example of how you can use REST-Assured to test the security of a REST API:
+
+Copy code
+import io.restassured.RestAssured;
+import io.restassured.response.Response;
+import org.testng.annotations.Test;
+import static io.restassured.RestAssured.given;
+import static org.testng.Assert.assertEquals;
+
+public class APISecurityTest {
+
+    @Test
+    public void testAuthentication() {
+        // Set the base URI and authentication details
+        RestAssured.baseURI = "https://api.example.com";
+        RestAssured.authentication = basic("username", "password");
+
+        // Send a GET request and check the response status
+        Response response = given().get("/secure-resource");
+        assertEquals(response.getStatusCode(), 200);
+    }
+
+    @Test
+    public void testEncryption() {
+        // Set the base URI and SSL configuration
+        RestAssured.baseURI = "https://api.example.com";
+        RestAssured.useRelaxedHTTPSValidation();
+
+        // Send a GET request and check the response status
+        Response response = given().get("/secure-resource");
+        assertEquals(response.getStatusCode(), 200);
+    }
+
+    @Test
+    public void testAuthorization() {
+        // Set the base URI and authentication details
+        RestAssured.baseURI = "https://api.example.com";
+        RestAssured.authentication = oauth2("access_token");
+
+        // Send a GET request and check the response status
+        Response response = given().get("/secure-resource");
+        assertEquals(response.getStatusCode(), 200);
+    }
+}
+This example tests the authentication, encryption and authorization of the API.
+The first test is checking that the API requires authentication, and that it returns the expected status code (200) when the correct credentials are provided.
+The second test is checking that the API uses SSL encryption, it uses useRelaxedHTTPSValidation() method to disable certificate validation.
+The third test is checking that the API requires authorization, and that it returns the expected status code (200) when the correct access token is provided.
+
+It's important to note that this is just a simple example and you should adapt it to suit the specific requirements of your API. Additionally, the security of an API cannot be fully tested by just sending a few requests, it needs to be tested using various tools and techniques such as penetration testing, fuzz testing, and threat modeling.
+=====================================================================================================================================================================================================================
+restassured authentication and authorization examble
+RestAssured is a Java library that is commonly used for testing and validating RESTful web services. It can be used to test the authentication and authorization of a web service by sending requests with different credentials and validating the response.
+
+Here is an example of using RestAssured to test the authentication and authorization of a web service:
+
+Copy code
+import static io.restassured.RestAssured.*;
+
+public class AuthenticationAndAuthorizationTest {
+
+    @Test
+    public void testAuthenticationAndAuthorization() {
+
+        // Send a request with correct credentials
+        given().
+            auth().basic("username", "password").
+        when().
+            get("https://example.com/secured").
+        then().
+            statusCode(200);
+
+        // Send a request with incorrect credentials
+        given().
+            auth().basic("wrongUsername", "wrongPassword").
+        when().
+            get("https://example.com/secured").
+        then().
+            statusCode(401);
+
+    }
+}
+In this example, the auth().basic("username", "password") method is used to set the basic authentication credentials for the request. The first request is sent with correct credentials and the status code 200 is expected in the response. The second request is sent with incorrect credentials, so a 401 Unauthorized status code is expected in the response.
+
+You can also use OAuth2 or JWT token to authenticate and authorize your request depending on the requirement of your RESTFul service.
+================================================================================================================================================================================================================
+restassured authentication and authorization examble
+REST-Assured is a Java library for testing RESTful web services. It can be used to test authentication and authorization for a web service by sending requests with different authentication credentials and checking the response for the expected result.
+
+Here is an example of how to use REST-Assured to test basic authentication for a web service:
+
+Copy code
+import io.restassured.RestAssured;
+import io.restassured.response.Response;
+import io.restassured.specification.RequestSpecification;
+import org.junit.Test;
+
+public class BasicAuthTest {
+
+    @Test
+    public void testBasicAuth() {
+        // Set the base URI for the web service
+        RestAssured.baseURI = "http://www.example.com";
+
+        // Create a request object
+        RequestSpecification request = RestAssured.given();
+
+        // Add basic authentication credentials to the request
+        request.auth().preemptive().basic("username", "password");
+
+        // Send a GET request to the web service
+        Response response = request.get("/resource");
+
+        // Check that the response has a status code of 200 (OK)
+        response.then().assertThat().statusCode(200);
+    }
+}
+This example uses the basic() method of the Auth class to add basic authentication credentials to the request. The preemptive() method is used to send the authentication credentials with the first request, before receiving a 401 Unauthorized response.
+
+For testing OAuth2, you can use the following code snippet
+
+Copy code
+    @Test
+    public void givenOAuth2Token_whenGetRequest_thenOk() {
+        RestAssured.baseURI = "https://api.example.com";
+        RequestSpecification request = RestAssured.given().auth().oauth2("access_token");
+        Response response = request.get("/resource");
+        assertEquals(200, response.getStatusCode());
+    }
+This example uses the oauth2() method of the Auth class to add OAuth2 token to the request.
+
+Keep in mind that this is just an example, you should adapt it to your needs and requirements
+=============================================================================================================================================================================================================
+restassured authentication and authorization examble
+RestAssured is a Java library for testing RESTful web services. It can be used to test the authentication and authorization of a web service by making requests and validating the responses.
+
+Here is an example of how to use RestAssured to test the authentication and authorization of a web service:
+
+First, you will need to add the RestAssured library to your project. You can do this by adding the following dependency to your pom.xml file (for Maven) or build.gradle file (for Gradle):
+Copy code
+<dependency>
+   <groupId>io.rest-assured</groupId>
+   <artifactId>rest-assured</artifactId>
+   <version>4.3.1</version>
+   <scope>test</scope>
+</dependency>
+Next, you will need to configure the base URI and path for your web service in your test code. For example:
+Copy code
+RestAssured.baseURI = "http://your.base.uri";
+RestAssured.basePath = "/your/base/path";
+To test the authentication of a web service, you can make a request to a protected resource and check that you receive a 401 Unauthorized status code in response. For example:
+Copy code
+given().auth().basic("username", "password").
+when().get("/protectedResource").
+then().statusCode(401);
+To test the authorization of a web service, you can make a request to a protected resource with correct credentials and check that you receive a 200 OK status code in response. For example:
+Copy code
+given().auth().basic("username", "password").
+when().get("/protectedResource").
+then().statusCode(200);
+Please keep in mind that this is just a basic example and there are more advanced options available in RestAssured. This example also assumes that the service is using basic authentication.
+==============================================================================================================================================================================================================
+testng restassured Authentication and Authorization testcases in java
+TestNG is a testing framework for Java that can be used to write and run test cases for RESTful web services. It can be easily integrated with RestAssured to write test cases for testing the authentication and authorization of a web service.
+
+Here is an example of how to use TestNG and RestAssured to test the authentication and authorization of a web service in Java:
+
+First, you will need to add the TestNG and RestAssured libraries to your project. You can do this by adding the following dependencies to your pom.xml file (for Maven) or build.gradle file (for Gradle):
+Copy code
+<dependency>
+   <groupId>org.testng</groupId>
+   <artifactId>testng</artifactId>
+   <version>7.1.0</version>
+   <scope>test</scope>
+</dependency>
+
+<dependency>
+   <groupId>io.rest-assured</groupId>
+   <artifactId>rest-assured</artifactId>
+   <version>4.3.1</version>
+   <scope>test</scope>
+</dependency>
+Next, you will need to create a test class and configure the base URI and path for your web service in the @BeforeTest method. For example:
+Copy code
+import org.testng.annotations.BeforeTest;
+import io.restassured.RestAssured;
+
+public class AuthenticationAuthorizationTest {
+
+   @BeforeTest
+   public void setup() {
+      RestAssured.baseURI = "http://your.base.uri";
+      RestAssured.basePath = "/your/base/path";
+   }
+To test the authentication of a web service, you can create a test method and make a request to a protected resource, check that you receive a 401 Unauthorized status code in response, and use the Assert class to check the expected results. For example:
+Copy code
+import org.testng.annotations.Test;
+import static org.testng.Assert.*;
+import io.restassured.response.Response;
+
+@Test
+public void testAuthentication() {
+   Response response =  given().auth().basic("username", "password").
+   when().get("/protectedResource").
+   then().statusCode(401).extract().response();
+
+   int statusCode = response.getStatusCode();
+   assertEquals(statusCode, 401);
+}
+To test the authorization of a web service, you can create another test method and make a request to a protected resource with correct credentials, check that you receive a 200 OK status code in response and use the Assert class to check the expected results. For example:
+Copy code
+import org.testng.annotations.Test;
+import static org.testng.Assert.*;
+import io.restassured.response.Response;
+
+@Test
+public void testAuthorization() {
+   Response response =  given().auth().basic("username", "password").
+   when().get("/protectedResource").
+   then().statusCode(200).extract().response();
+
+   int statusCode = response.getStatusCode();
+   assertEquals(statusCode, 200);
+}
+You can then use the TestNG framework to run these test cases and check the
+===================================================================================================================================================================================
+testng restassured Input validation testcases in java
+To write input validation testcases using TestNG and RestAssured in Java, you can use the following approach:
+
+Create a TestNG test class and import the necessary libraries for RestAssured and TestNG.
+
+Use the RestAssured API to make a request to the API endpoint you want to test.
+
+Use TestNG's assert methods to validate the response of the API. For example, you can use the assertEquals method to check that the response status code is 200.
+
+Create test methods for each input validation scenario you want to test. For example, you can have a test method to check that the API returns a 400 status code when an invalid input is provided.
+
+Use TestNG's @Test annotation to mark the test methods as test methods.
+
+Run the test class using TestNG.
+
+Here's an example of a simple test case for input validation using RestAssured and TestNG:
+
+Copy code
+import org.testng.annotations.Test;
+import io.restassured.RestAssured;
+import io.restassured.response.Response;
+import static org.testng.Assert.*;
+
+public class InputValidationTest {
+
+    @Test
+    public void testInvalidInput() {
+        Response response = RestAssured.get("http://example.com/api/resource?param=invalid_value");
+        assertEquals(response.getStatusCode(), 400);
+    }
+}
+This is just a simple example and you would need to tweak according to your use case and requirement.
+
+
+
+
+dyzinemi@lyft.live
+testng restassured Input validation examble testcases in java
+Here's an example of a more detailed input validation testcase using TestNG and RestAssured in Java:
+
+Copy code
+import org.testng.annotations.Test;
+import io.restassured.RestAssured;
+import io.restassured.response.Response;
+import static org.testng.Assert.*;
+
+public class InputValidationTest {
+
+    @Test
+    public void testInvalidEmailFormat() {
+        Response response = RestAssured.get("http://example.com/api/user?email=invalid_email");
+        assertEquals(response.getStatusCode(), 400);
+        assertTrue(response.getBody().asString().contains("Invalid email format"));
+    }
+
+    @Test
+    public void testMissingRequiredField() {
+        Response response = RestAssured.post("http://example.com/api/user")
+                .formParam("name", "John Doe")
+                .formParam("age", 30);
+        assertEquals(response.getStatusCode(), 400);
+        assertTrue(response.getBody().asString().contains("Email is a required field"));
+    }
+
+    @Test
+    public void testInvalidAgeRange() {
+        Response response = RestAssured.post("http://example.com/api/user")
+                .formParam("name", "John Doe")
+                .formParam("email", "john.doe@example.com")
+                .formParam("age", 150);
+        assertEquals(response.getStatusCode(), 400);
+        assertTrue(response.getBody().asString().contains("Age must be between 18 and 100"));
+    }
+}
+In this example, we have three test methods: testInvalidEmailFormat, testMissingRequiredField and testInvalidAgeRange. Each test method makes a request to the API using RestAssured and then uses TestNG's assert methods to validate the response of the API.
+
+In testInvalidEmailFormat, it tests if the API returns a 400 status code and a specific error message when an invalid email format is provided.
+
+In testMissingRequiredField, it tests if the API returns a 400 status code and a specific error message when a required field is missing.
+
+In testInvalidAgeRange, it tests if the API returns a 400 status code and a specific error message when an age is provided that is outside of the valid range.
+
+It's important to point out that this is a simplified example, so you should adapt this example to your own use case, and include more test cases for your specific needs.
+
+
+
+
+dyzinemi@lyft.live
+testng restassured Input validation testcases examble login in java
+Here's an example of input validation testcases for a login API using TestNG and RestAssured in Java:
+
+Copy code
+import org.testng.annotations.Test;
+import io.restassured.RestAssured;
+import io.restassured.response.Response;
+import static org.testng.Assert.*;
+
+public class LoginInputValidationTest {
+
+    @Test
+    public void testMissingUsername() {
+        Response response = RestAssured.post("http://example.com/api/login")
+                .formParam("password", "password123");
+        assertEquals(response.getStatusCode(), 400);
+        assertTrue(response.getBody().asString().contains("Username is a required field"));
+    }
+
+    @Test
+    public void testMissingPassword() {
+        Response response = RestAssured.post("http://example.com/api/login")
+                .formParam("username", "johndoe");
+        assertEquals(response.getStatusCode(), 400);
+        assertTrue(response.getBody().asString().contains("Password is a required field"));
+    }
+
+    @Test
+    public void testInvalidCredentials() {
+        Response response = RestAssured.post("http://example.com/api/login")
+                .formParam("username", "johndoe")
+                .formParam("password", "wrongpassword");
+        assertEquals(response.getStatusCode(), 401);
+        assertTrue(response.getBody().asString().contains("Invalid username or password"));
+    }
+}
+In this example, we have three test methods: testMissingUsername, testMissingPassword and testInvalidCredentials. Each test method makes a request to the API using RestAssured and then uses TestNG's assert methods to validate the response of the API.
+
+In testMissingUsername, it tests if the API returns a 400 status code and a specific error message when the username is missing in the request.
+
+In testMissingPassword, it tests if the API returns a 400 status code and a specific error message when the password is missing in the request.
+
+In testInvalidCredentials, it tests if the API returns a 401 status code and a specific error message when the provided username and password are not valid.
+
+It's important to point out that this is a simplified example, so you should adapt this example to your own use case, and include more test cases for your specific needs.
+============================================================================================================================================================================
+testng restassured Input validation examble search testcases in java
+Here is an example of using TestNG and REST-assured for input validation in a Java test case:
+
+Copy code
+import io.restassured.RestAssured;
+import io.restassured.response.Response;
+import org.testng.annotations.Test;
+import static org.testng.Assert.*;
+
+public class InputValidationTest {
+
+    @Test
+    public void testInvalidInput() {
+        Response response = RestAssured.get("http://example.com/api/user?id=-1");
+        assertEquals(response.statusCode(), 400);
+        assertTrue(response.getBody().asString().contains("Invalid input"));
+    }
+
+    @Test
+    public void testValidInput() {
+        Response response = RestAssured.get("http://example.com/api/user?id=1");
+        assertEquals(response.statusCode(), 200);
+        assertTrue(response.getBody().asString().contains("User information"));
+    }
+}
+This test cases uses the REST-assured library to send GET requests to an example API endpoint, passing in either a valid (1) or invalid (-1) input for the "id" parameter. The tests then use TestNG's assert methods to check that the API returns the expected HTTP status codes (200 for valid input, 400 for invalid input) and error messages.
+========================================================================================================================
+testng restassured Input validation create user examble testcases in java
+Here is an example of a test case for creating a user using TestNG and REST-Assured in Java:
+
+Copy code
+import io.restassured.RestAssured;
+import io.restassured.response.Response;
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
+public class CreateUserTest {
+
+    @Test
+    public void testCreateUser() {
+        // Define the endpoint
+        String endpoint = "http://localhost:8080/create-user";
+
+        // Define the payload
+        String payload = "{\"name\":\"John Doe\",\"email\":\"johndoe@example.com\",\"password\":\"password123\"}";
+
+        // Send the POST request
+        Response response = RestAssured.given().contentType("application/json").body(payload).post(endpoint);
+
+        // Validate the response
+        int statusCode = response.getStatusCode();
+        Assert.assertEquals(statusCode, 201, "Expected status code 201 but got " + statusCode);
+        String responseBody = response.getBody().asString();
+        Assert.assertTrue(responseBody.contains("John Doe"), "Expected name John Doe in response body but got " + responseBody);
+        Assert.assertTrue(responseBody.contains("johndoe@example.com"), "Expected email johndoe@example.com in response body but got " + responseBody);
+    }
+}
+This test case sends a POST request to the endpoint "http://localhost:8080/create-user" with a JSON payload containing the user's name, email, and password. It then validates the response by checking the status code and the presence of the user's name and email in the response body.
+
+You can further validate the request payload with the help of schema validation and other validations as per your requirement.
+================================================================================================================================================
+testng restassured update delete create search user examble testcases in java
+TestNG is a testing framework for Java that provides support for test automation, data-driven testing, and parameterized tests. REST-Assured is a Java library that makes it easy to test RESTful web services.
+
+Here is an example of a test case using TestNG and REST-Assured to create, retrieve, update, and delete a user:
+
+Copy code
+import io.restassured.RestAssured;
+import io.restassured.response.Response;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
+import static io.restassured.RestAssured.given;
+
+public class UserTest {
+  private String userId;
+
+  @BeforeClass
+  public void setUp() {
+    RestAssured.baseURI = "http://localhost:8080";
+  }
+
+  @Test
+  public void createUser() {
+    String user = "{\"name\":\"John Doe\",\"age\":30}";
+    Response response = given()
+        .contentType("application/json")
+        .body(user)
+        .post("/users");
+    userId = response.jsonPath().get("id");
+    assert response.statusCode() == 201;
+  }
+
+  @Test(dependsOnMethods = "createUser")
+  public void getUser() {
+    Response response = given()
+        .get("/users/" + userId);
+    assert response.statusCode() == 200;
+    assert response.jsonPath().get("name").equals("John Doe");
+  }
+
+  @Test(dependsOnMethods = "getUser")
+  public void updateUser() {
+    String user = "{\"name\":\"Jane Doe\",\"age\":35}";
+    Response response = given()
+        .contentType("application/json")
+        .body(user)
+        .put("/users/" + userId);
+    assert response.statusCode() == 200;
+    assert response.jsonPath().get("name").equals("Jane Doe");
+  }
+
+  @Test(dependsOnMethods = "updateUser")
+  public void deleteUser() {
+    Response response = given()
+        .delete("/users/" + userId);
+    assert response.statusCode() == 204;
+  }
+}
+This test case will create a user, retrieve the user, update the user, and then delete the user by sending HTTP requests to the specified endpoints. The assert statements are used to verify the response status code and the response body.
+
+You can also use the search method to get all users or search with some parameters like this:
+
+Copy code
+@Test
+  public void searchUser() {
+    Response response = given()
+        .get("/users/search?name=John Doe");
+    assert response.statusCode() == 200;
+    assert response.jsonPath().getList("name").contains("John Doe");
+  }
+This test case will search for users with name "John Doe" and assert that the response status code is 200 and that the response body contains a user with that name.
+================================================================================================================================================================
+testng restassured Access controls examble testcases in java
+Access controls are used to restrict access to certain resources or actions based on certain criteria, such as the user's role or permissions. In a RESTful web service, access controls can be implemented using authentication and authorization mechanisms.
+
+Here is an example of a test case using TestNG and REST-Assured to test access controls for a RESTful web service that requires authentication and authorization:
+
+Copy code
+import io.restassured.RestAssured;
+import io.restassured.response.Response;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
+import static io.restassured.RestAssured.given;
+
+public class AccessControlTest {
+  private String token;
+
+  @BeforeClass
+  public void setUp() {
+    RestAssured.baseURI = "http://localhost:8080";
+  }
+
+  @Test
+  public void login() {
+    String credentials = "{\"username\":\"johndoe\",\"password\":\"password\"}";
+    Response response = given()
+        .contentType("application/json")
+        .body(credentials)
+        .post("/login");
+    token = response.jsonPath().get("token");
+    assert response.statusCode() == 200;
+  }
+
+  @Test(dependsOnMethods = "login")
+  public void getResource() {
+    Response response = given()
+        .header("Authorization", "Bearer " + token)
+        .get("/resource");
+    assert response.statusCode() == 200;
+  }
+
+  @Test(dependsOnMethods = "login")
+  public void postResource() {
+    String resource = "{\"data\":\"Some data\"}";
+    Response response = given()
+        .header("Authorization", "Bearer " + token)
+        .contentType("application/json")
+        .body(resource)
+        .post("/resource");
+    assert response.statusCode() == 201;
+  }
+
+  @Test(dependsOnMethods = "postResource")
+  public void deleteResource() {
+    Response response = given()
+        .header("Authorization", "Bearer " + token)
+        .delete("/resource");
+    assert response.statusCode() == 204;
+  }
+
+  @Test
+  public void unauthenticatedAccess() {
+    Response response = given()
+        .get("/resource");
+    assert response.statusCode() == 401;
+  }
+
+  @Test(dependsOnMethods = "login")
+  public void unauthorizedAccess() {
+    Response response = given()
+        .header("Authorization", "Bearer " + token)
+        .delete("/admin-resource");
+    assert response.statusCode() == 403;
+  }
+}
+This test case will test the following scenarios:
+
+Logging in and obtaining an authentication token
+Accessing a protected resource with a valid token
+Creating a new resource with a valid token
+Deleting a resource with a valid token
+Attempting to access a protected resource without a valid token
+Attempting to access a resource that requires higher privileges than the user has
+In this example, the service is using JWT token for authentication. You can also use other auth mechanisms like OAuth, Basic Auth etc.
+
+You can assert the response status code to verify whether the request is successful or not and also check the
+=========================================================================================================================================================
+testng restassured Error handling examble testcases in java
+RestAssured is a Java library for testing and validation of RESTful web services. It provides a fluent and easy-to-use API for performing HTTP requests and asserting the response.
+
+Here is an example of how to handle errors in a test case using RestAssured:
+
+Copy code
+@Test
+public void testErrorHandling() {
+    given()
+        .contentType(ContentType.JSON)
+    .when()
+        .get("/some-endpoint-that-returns-404")
+    .then()
+        .statusCode(404)
+        .body("error", equalTo("Not Found"))
+}
+In this example, the test case performs a GET request to an endpoint that is expected to return a 404 status code. The then() block asserts that the response has a status code of 404 and that the "error" field in the JSON body has a value of "Not Found".
+
+If the response does not match these expectations, the test case will fail. You can also use assertThat() method instead of then() to assert the response.
+
+Additionally, you can also use try-catch block to handle the exception and do some action based on the exception occurred.
+
+Copy code
+try {
+    given()
+        .contentType(ContentType.JSON)
+    .when()
+        .get("/some-endpoint-that-returns-404")
+    .then()
+        .statusCode(404)
+        .body("error", equalTo("Not Found"))
+} catch (AssertionError e) {
+    // Do something when the assertion fails
+}
+It is also possible to chain multiple expectation together in a single test case, for example:
+
+Copy code
+@Test
+public void testErrorHandling() {
+    given()
+        .contentType(ContentType.JSON)
+    .when()
+        .get("/some-endpoint-that-returns-404")
+    .then()
+        .statusCode(404)
+        .body("error", equalTo("Not Found"))
+        .body("code", equalTo(404))
+}
+This test case asserts that the response has a status code of 404, the "error" field in the JSON body has a value of "Not Found" and the "code" field in the JSON body has a value of 404.
+
+You can also use expect() method instead of then() to assert multiple assertions.
+
+Copy code
+expect()
+    .statusCode(404)
+    .body("error", equalTo("Not Found"))
+    .body("code", equalTo(404))
+It performs the same as then().
+========================================================================================================================================================
+testng restassured Data encryption examble testcases in java
+When testing RESTful web services that use data encryption, you can use RestAssured to send and receive encrypted data in the request and response. Here is an example of how to test data encryption in a test case using RestAssured:
+
+Copy code
+import org.bouncycastle.jce.provider.BouncyCastleProvider;
+import javax.crypto.Cipher;
+import java.security.Security;
+
+public class EncryptionTest {
+    private static final String ENCRYPTED_DATA = "encrypted_data";
+    private static final String PLAINTEXT_DATA = "plaintext_data";
+    private static final String ALGORITHM = "AES";
+    private static final String TRANSFORMATION = "AES/ECB/PKCS5Padding";
+    private static final String KEY = "key";
+
+    @BeforeClass
+    public static void setUp() {
+        Security.addProvider(new BouncyCastleProvider());
+    }
+
+    @Test
+    public void testDataEncryption() {
+        // Encrypt the data
+        byte[] plaintextData = PLAINTEXT_DATA.getBytes();
+        byte[] key = KEY.getBytes();
+        byte[] encryptedData = encrypt(plaintextData, key);
+
+        // Send the encrypted data in the request
+        given()
+            .contentType(ContentType.JSON)
+            .body(ENCRYPTED_DATA)
+        .when()
+            .post("/some-endpoint")
+        .then()
+            .statusCode(200)
+            .body("success", equalTo(true));
+
+        // Decrypt the data
+        byte[] decryptedData = decrypt(encryptedData, key);
+        String decryptedString = new String(decryptedData);
+
+        // Assert that the decrypted data is the same as the original plaintext data
+        assertEquals(PLAINTEXT_DATA, decryptedString);
+    }
+
+    private byte[] encrypt(byte[] plaintextData, byte[] key) {
+        try {
+            Cipher cipher = Cipher.getInstance(TRANSFORMATION, "BC");
+            cipher.init(Cipher.ENCRYPT_MODE, new SecretKeySpec(key, ALGORITHM));
+            return cipher.doFinal(plaintextData);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private byte[] decrypt(byte[] encryptedData, byte[] key) {
+        try {
+            Cipher cipher = Cipher.getInstance(TRANSFORMATION, "BC");
+            cipher.init(Cipher.DECRYPT_MODE, new SecretKeySpec(key, ALGORITHM));
+            return cipher.doFinal(encryptedData);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+}
+This example demonstrates how to use the AES encryption algorithm in the test case. The encrypt() method encrypts the plaintext data using the key and the decrypt() method decrypts the encrypted data using the same key. The test case then sends the encrypted data in the request and asserts that the response has a status code of 200 and a success field equals to true. Finally, the test case decrypts the data and asserts that the decrypted data is the same as the original plaintext data.
+
+It is important to note that the encryption and dec
+===================================================================================================================================================
+testng restassured Data encryption examble testcases in java
+
+Data encryption is the process of converting plaintext into ciphertext to protect sensitive information from unauthorized access. In a RESTful web service, data encryption can be used to secure the data being transmitted over the network.
+
+Here is an example of how to test data encryption in a test case using RestAssured:
+
+Copy code
+@Test
+public void testEncryption() {
+    String plaintext = "hello world";
+    String ciphertext = encrypt(plaintext);
+
+    given()
+        .contentType(ContentType.JSON)
+        .body(ciphertext)
+    .when()
+        .post("/some-endpoint")
+    .then()
+        .statusCode(200)
+        .body("plaintext", equalTo(plaintext))
+}
+In this example, the test case first encrypts a plaintext string using a custom encryption method called encrypt(plaintext). The encrypted string is then sent as the request body in a POST request to an endpoint. The then() block asserts that the response has a status code of 200 and that the decrypted "plaintext" field in the JSON body matches the original plaintext string.
+
+It is important to note that in this example, the encrypt method is a custom method and is not provided by the RestAssured library, and the encryption algorithm is not specified in the example, you should use the encryption algorithm that you want to test.
+
+You can also use different encryption libraries like javax.crypto package, bouncycastle library, etc. to test the encryption and decryption of data.
+
+Additionally, you can also use try-catch block to handle the exception and do some action based on the exception occurred.
+
+Copy code
+try {
+    String plaintext = "hello world";
+    String ciphertext = encrypt(plaintext);
+
+    given()
+        .contentType(ContentType.JSON)
+        .body(ciphertext)
+    .when()
+        .post("/some-endpoint")
+    .then()
+        .statusCode(200)
+        .body("plaintext", equalTo(plaintext))
+} catch (AssertionError e) {
+    // Do something when the assertion fails
+}
+It is also possible to chain multiple encryption/decryption test case together in a single test case, for example:
+
+Copy code
+@Test
+public void testEncryption() {
+    String plaintext = "hello world";
+    String ciphertext = encrypt(plaintext);
+
+    given()
+        .contentType(ContentType.JSON)
+        .body(ciphertext)
+    .when()
+        .post("/some-endpoint")
+    .then()
+        .statusCode(200)
+        .body("plaintext", equalTo(plaintext))
+        
+    String plaintext2 = "another plaintext";
+    String ciphertext2 = encrypt(plaintext2);
+
+    given()
+        .contentType(ContentType.JSON)
+        .body(ciphertext2)
+    .when()
+        .post("/some-endpoint")
+    .then()
+        .statusCode(200)
+        .body("plaintext", equalTo(plaintext2))
+}
+This test case encrypts two different plaintext and send them as a request body to an endpoint, then asserts that the decrypted plaintext matches the original plaintext and the response status
+====================================================================================================================================================
+testng restassurd Security vulnerabilities scanning examble testcases in java
+TestNG is a testing framework for the Java programming language. RestAssured is a library for testing RESTful web services.
+It is possible to use TestNG and RestAssured together to write test cases for a RESTful web service.
+
+To scan for security vulnerabilities in a RESTful web service, you can use a tool like OWASP ZAP (Zed Attack Proxy). OWASP ZAP is an open-source web application security scanner that can be integrated with TestNG and RestAssured. You can use it to automatically scan your web service for common security vulnerabilities and generate a report.
+
+Here is an example of how you might write a TestNG test case in Java to scan a RESTful web service for security vulnerabilities using OWASP ZAP:
+
+Copy code
+import org.testng.annotations.Test;
+import org.zaproxy.clientapi.core.ClientApi;
+
+public class SecurityScanTest {
+    @Test
+    public void testSecurityScan() {
+        // Start ZAP proxy
+        ClientApi api = new ClientApi("http://localhost:8090");
+        api.core.newSession("", "");
+
+        // Send a request to the web service through the ZAP proxy
+        RestAssured.baseURI = "http://localhost:8090";
+        RestAssured.given().get("/example").then().assertThat().statusCode(200);
+
+        // Run the active scanner on the web service
+        api.ascan.scan("", "", "", "", "", "");
+
+        // Wait for the scan to complete
+        int progress = 0;
+        while (progress < 100) {
+            progress = (Integer) api.ascan.status("").get("status");
+            Thread.sleep(1000);
+        }
+
+        // Generate a report
+        api.core.htmlreport();
+    }
+}
+This is just an example and you will need to modify the code according to your requirements and specific use case.
+=======================================================================================================================================
+testng restassurd Security vulnerabilities scanning examble testcases in java
+
+TestNG is a testing framework for Java that allows you to write tests in a more structured way. REST-Assured is a library for testing RESTful web services in Java, which can be used in conjunction with TestNG.
+
+To perform security vulnerability scanning on RESTful web services, you can use tools like OWASP ZAP or Nessus, which can scan for common vulnerabilities such as SQL injection and cross-site scripting (XSS).
+
+Example TestNG test case in Java for testing a RESTful web service using REST-Assured library:
+
+Copy code
+import io.restassured.RestAssured;
+import io.restassured.response.Response;
+import org.testng.annotations.Test;
+
+import static io.restassured.RestAssured.get;
+import static org.testng.Assert.assertEquals;
+
+public class TestRESTAPI {
+    @Test
+    public void testGetMethod() {
+        RestAssured.baseURI = "http://your-api-base-url";
+        Response response = get("/your-resource-path");
+        assertEquals(response.getStatusCode(), 200);
+    }
+}
+It's important to note that automated testing can only detect known vulnerabilities. A manual penetration testing should be carried out by a professional security tester to identify unknown vulnerabilities.
