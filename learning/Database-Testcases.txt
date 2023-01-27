@@ -13,3 +13,26 @@ testing for performance and scalability
 It's also important to include negative test cases to check the robustness of the system against unexpected inputs and edge cases.
 
 It's always good to have a checklist of items to test against as it helps to ensure that all important aspects of the database are tested and also helps to keep track of the progress of testing.
+==============================================================================================================================================================
+dyzinemi@lyft.live
+types of database constraints
+There are several types of database constraints that can be used to ensure data integrity in a relational database. These include:
+
+Primary Key Constraints - Uniquely identify each record in a table.
+
+Foreign Key Constraints - Enforce a link between the data in two tables.
+
+Check Constraints - Ensure that the data in a column meets certain conditions.
+
+Unique Constraints - Ensure that the data in a column or set of columns is unique across the entire table.
+
+Not Null Constraints - Ensure that a column cannot have a null value.
+
+Default Constraints - Assign a default value to a column if no value is specified during insertion.
+
+Trigger Constraints - Automatically perform a certain action in response to a specific event, such as inserting or updating data in a table.
+
+Assertion Constraints - Check the integrity of data across the entire database, not just on the level of a single table.
+
+Note that the support and syntax for constraints may vary between different database management systems.
+==================================================================================================================
