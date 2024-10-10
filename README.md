@@ -1,438 +1,345 @@
+# Lean Test Automation Architecture using Java and Selenium WebDriver
 
-<!DOCTYPE html>
-<html>
-	<head>
-		<!--
-			ExtentReports Library 2.41.1 | http://relevantcodes.com/extentreports-for-selenium/ | https://github.com/anshooarora/
-			Copyright (c) 2015, Anshoo Arora (Relevant Codes) | Copyrights licensed under the New BSD License | http://opensource.org/licenses/BSD-3-Clause
-			Documentation: http://extentreports.relevantcodes.com
-		-->
+[![Actions Status](https://github.com/eliasnogueira/selenium-java-lean-test-achitecture/workflows/Build%20and%20Test/badge.svg)](https://github.com/eliasnogueira/selenium-java-lean-test-achitecture/actions)
 
-		<meta charset='UTF-8' />
-		<meta name='description' content='ExtentReports (by Anshoo Arora) is a reporting library for automation testing for .NET and Java. It creates detailed and beautiful HTML reports for modern browsers. ExtentReports shows test and step summary along with dashboards, system and environment details for quick analysis of your tests.' />
-		<meta name='robots' content='noodp, noydir' />
-		<meta name='viewport' content='width=device-width, initial-scale=1' />
-		<meta name='extentx' id='extentx' content='' />
+**This project delivers to you a complete lean test architecture for your web tests using the best frameworks and
+practices.**
 
-		<title>
-				ExtentReports 2.0
-		</title>
+It has a complete solution to run tests in different ways:
 
+* local testing using the browser on your local machine
+* parallel (or single) testing using Selenium Docker
+* local testing using TestContainers
+* Distributed execution using Selenium Grid
 
-		<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600' rel='stylesheet' type='text/css'>
-		<link href='https://cdn.rawgit.com/anshooarora/extentreports/6032d73243ba4fe4fb8769eb9c315d4fdf16fe68/cdn/extent.css' type='text/css' rel='stylesheet' />
-<!--		<script type="text/javascript">// <![CDATA[-->
-<!--function googleTranslateElementInit() {-->
-<!--new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');-->
-<!--}-->
-<!--// ]]></script>-->
-<!--		<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" type="text/javascript"></script>-->
-		<style>
-			#google-translate {
-display: none;
-}
+## Examples
 
+### Local testing execution example
 
+![Local testing execution example](assets/example_filed_test_with_report.gif)
 
+### Parallel testing execution example with Selenium Grid
 
-		</style>
-	</head>
+![Parallel testing execution example with Selenium Grid](assets/selenium-grid-execution.gif)
 
+## Languages and Frameworks
 
-	<body class='extent default standard hide-overflow'>
-		<!-- nav -->
-		<nav>
-			<div class='logo-container blue darken-2'>
-				<a class='logo-content' href='http://extentreports.relevantcodes.com'>
-					<span>ExtentReports</span>
-				</a>
-				<a href='#' data-activates='slide-out' class='button-collapse hide-on-large-only'><i class='mdi-navigation-apps'></i></a>
-			</div>
-			<ul id='slide-out' class='side-nav fixed hide-on-med-and-down'>
-				<li class='analysis waves-effect active'><a href='#!' class='test-view' onclick="_updateCurrentStage(0)"><i class='mdi-action-dashboard'></i>Test Details</a></li>
-				<li class='analysis waves-effect'>
-					<a href='#!' onclick="_updateCurrentStage(-1)" class='dashboard-view'><i class='mdi-action-track-changes'></i></i>Analysis</a>
-				</li>
-			</ul>
-			<span class='report-name'>Automation Report</span> <span class='report-headline'></span>
-			<div class='report-name' id="google-translate">Automation Report</div> <div class='report-headline'></div>
-			<div id="google_translate_element">
-				<script type="text/javascript">
+This project uses the following languages and frameworks:
 
-					function googleTranslateElementInit() {
-                      new google.translate.TranslateElement({
-                      pageLanguage: 'en', includedLanguages: 'af,ach,ak,am,ar,az,be,bem,bg,bh,bn,br,bs,ca,chr,ckb,co,crs,cs,cy,da,de,ee,el,en,eo,es,es-419,et,eu,fa,fi, fo,fr,fy,ga,gaa,gd,gl,gn,gu,ha,haw,hi,hr,ht,hu,hy,ia, id,ig,is,it,iw,ja,jw,ka,kg,kk,km,kn,ko,kri,ku,ky,la, lg,ln,lo,loz,lt,lua,lv,mfe,mg,mi,mk,ml,mn,mo,mr,ms,mt, ne,nl,nn,no,nso,ny,nyn,oc,om,or,pa,pcm,pl,ps,pt-BR, pt-PT,qu,rm,rn,ro,ru,rw,sd,sh,si,sk,sl,sn,so,sq,sr, sr-ME,st,su,sv,sw,ta,te,tg,th,ti,tk,tl,tn,to,tr,tt, tum,tw,ug,uk,ur,uz,vi,wo,xh,yi,yo,zh-CN,zh-TW,zu',
-                      layout: google.translate.TranslateElement.InlineLayout.VERTICAL
-                      }, 'google_translate_element');
-                    }
+* [Java 22](https://openjdk.java.net/projects/jdk/22/) as the programming language
+* [TestNG](https://testng.org/doc/) as the UnitTest framework to support the test creation
+* [Selenium WebDriver](https://www.selenium.dev/) as the web browser automation framework using the Java binding
+* [AssertJ](https://joel-costigliola.github.io/assertj/) as the fluent assertion library
+* [Allure Report](https://docs.qameta.io/allure/) as the testing report strategy
+* [DataFaker](https://www.datafaker.net/) as the faker data generation strategy
+* [Log4J2](https://logging.apache.org/log4j/2.x/) as the logging management strategy
+* [Owner](http://owner.aeonbits.org/) to minimize the code to handle the properties file
+* [TestContainers](https://java.testcontainers.org/modules/webdriver_containers/) Webdriver Containers
 
+## Test architecture
 
-                    $(window).on('load', function() {
-                      $('.goog-te-gadget').html($('.goog-te-gadget').children());
-                      $("#google-translate").fadeIn('1000');
+We know that any automation project starts with a good test architecture.
 
+This project can be your initial test architecture for a faster start.
+You will see the following items in this architecture:
 
-                      function cleartimer() {
-                          setTimeout(function(){
-                              window.clearInterval(myVar);
-                          }, 500);
-                      }
-                      function myTimer() {
-                          if ($('.goog-te-combo option:first').length) {
-                              $('.goog-te-combo option:first').html('Translate');
-                              cleartimer();
-                          }
-                      }
-                      var myVar = setInterval(function(){ myTimer() }, 0);
+* [Page Objects pattern](#page-objects-pattern)
+* [Execution types](#execution-types)
+* [BaseTest](#basetest)
+* [TestListener](#testlistener)
+* [Logging](#logging)
+* [Configuration files](#configuration-files)
+* [Parallel execution](#parallel-execution)
+* [Test Data Factory](#test-data-factory)
+* [Profiles executors on pom.xml](#profiles-executors-on-pomxml)
+* [Pipeline as a code](#pipeline-as-a-code)
+* [Test environment abstraction](#execution-with-docker-selenium-distributed)
 
-                    });
-				</script>
-				<script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-			</div>
-			<ul class='right hide-on-med-and-down nav-right'>
-				<li class='theme-selector' alt='Click to toggle dark theme. To enable by default, use js configuration $("body").addClass("dark");' title='Click to toggle dark theme. To enable by default, use js configuration $("body").addClass("dark");'>
-					<i class='mdi-hardware-desktop-windows'></i>
-				</li>
-				<li>
-					<span class='suite-started-time'>2024-10-05 16:52:35</span>
-				</li>
-				<li>
-					<span>v2.41.1</span>
-				</li>
-			</ul>
-		</nav>
-		<!-- /nav -->
+Do you have any other items to add to this test architecture? Please do a pull request or open an issue to discuss.
 
-		<!-- container -->
-		<div class='container'>
+### Page Objects pattern
 
-			<!-- dashboard -->
-			<div id='dashboard-view' class='row'>
-				<div class='time-totals'>
-					<div class='col l2 m4 s6'>
-						<div class='card suite-total-tests'>
-							<span class='panel-name'>Total Tests</span>
-							<span class='total-tests'> <span class='panel-lead'></span> </span>
-						</div>
-					</div>
-					<div class='col l2 m4 s6'>
-						<div class='card suite-total-steps'>
-							<span class='panel-name'>Total Steps</span>
-							<span class='total-steps'> <span class='panel-lead'></span> </span>
-						</div>
-					</div>
-					<div class='col l2 m4 s12'>
-						<div class='card suite-total-time-current'>
-							<span class='panel-name'>Total Time Taken (Current Run)</span>
-							<span class='suite-total-time-current-value panel-lead'>0h 0m 13s+298ms</span>
-						</div>
-					</div>
-					<div class='col l2 m4 s12'>
-						<div class='card suite-total-time-overall'>
-							<span class='panel-name'>Total Time Taken (Overall)</span>
-							<span class='suite-total-time-overall-value panel-lead'>0h 0m 13s+298ms</span>
-						</div>
-					</div>
-					<div class='col l2 m4 s6 suite-start-time'>
-						<div class='card accent green-accent'>
-							<span class='panel-name'>Start</span>
-							<span class='panel-lead suite-started-time'>2024-10-05 16:52:21</span>
-						</div>
-					</div>
-					<div class='col l2 m4 s6 suite-end-time'>
-						<div class='card accent pink-accent'>
-							<span class='panel-name'>End</span>
-							<span class='panel-lead suite-ended-time'>2024-10-05 16:52:35</span>
-						</div>
-					</div>
-				</div>
-				<div class='charts'>
-					<div class='col s12 m6 l4 fh'>
-						<div class='card-panel'>
-							<div>
-								<span class='panel-name'>Tests View</span>
-							</div>
-							<div class='panel-setting modal-trigger test-count-setting right'>
-								<a href='#test-count-setting'><i class='mdi-navigation-more-vert text-md'></i></a>
-							</div>
-							<div class='chart-box'>
-								<canvas class='text-centered' id='test-analysis'></canvas>
-							</div>
-							<div>
-								<span class='weight-light'><span class='t-pass-count weight-normal'></span> test(s) passed</span>
-							</div>
-							<div>
-								<span class='weight-light'><span class='t-fail-count weight-normal'></span> test(s) failed, <span class='t-others-count weight-normal'></span> others</span>
-							</div>
-						</div>
-					</div>
-					<div class='col s12 m6 l4 fh'>
-						<div class='card-panel'>
-							<div>
-								<span class='panel-name'>Steps View</span>
-							</div>
-							<div class='panel-setting modal-trigger step-status-filter right'>
-								<a href='#step-status-filter'><i class='mdi-navigation-more-vert text-md'></i></a>
-							</div>
-							<div class='chart-box'>
-								<canvas class='text-centered' id='step-analysis'></canvas>
-							</div>
-							<div>
-								<span class='weight-light'><span class='s-pass-count weight-normal'></span> step(s) passed </span>
-							</div>
-							<div>
-								<span class='weight-light'><span class='s-fail-count weight-normal'></span> step(s) failed, <span class='s-others-count weight-normal'></span> others</span>
-							</div>
-						</div>
-					</div>
-					<div class='col s12 m12 l4 fh'>
-						<div class='card-panel'>
-							<span class='panel-name'>Pass Percentage</span>
-							<span class='pass-percentage panel-lead'></span>
-							<div class='progress light-blue lighten-3'>
-								<div class='determinate light-blue'></div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class='system-view'>
-					<div class='col l4 m12 s12'>
-						<div class='card-panel'>
-							<span class='label info outline right'>Environment</span>
-							<table>
-								<thead>
-									<tr>
-										<th>Param</th>
-										<th>Value</th>
-									</tr>
-								</thead>
-								<tbody>
-										<tr>
-											<td>User Name</td>
-											<td>G525585</td>
-										</tr>
-										<tr>
-											<td>OS</td>
-											<td>Windows 11</td>
-										</tr>
-										<tr>
-											<td>Java Version</td>
-											<td>22.0.1</td>
-										</tr>
-										<tr>
-											<td>Host Name</td>
-											<td>EGCA2-9RRXSQ3</td>
-										</tr>
-								</tbody>
-							</table>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- /dashboard -->
+I will not explain the Page Object pattern because you can find a lot of good explanations and examples on the internet.
+Instead, I will explain what exactly about page objects I'm using in this project.
 
-			<!-- tests -->
-			<div id='test-view' class='row _addedTable'>
-				<div class='col _addedCell1'>
-					<div class='contents'>
-						<div class='card-panel heading'>
-							<h5>Tests</h5>
-						</div>
-						<div class='card-panel filters'>
-							<div>
-								<a class='dropdown-button btn-floating btn-small waves-effect waves-light grey tests-toggle' data-activates='tests-toggle' data-constrainwidth='true' data-beloworigin='true' data-hover='true' href='#'>
-									<i class='mdi-action-reorder'></i>
-								</a>
-								<ul id='tests-toggle' class='dropdown-content'>
-									<li class='pass'><a href='#!'>Pass</a></li>
-									<li class='fail'><a href='#!'>Fail</a></li>
-									<li class='skip'><a href='#!'>Skip</a></li>
-									<li class='divider'></li>
-									<li class='clear'><a href='#!'>Clear Filters</a></li>
-								</ul>
-							</div>
-							<div>
-								<a class='btn-floating btn-small waves-effect waves-light grey' id='clear-filters' alt='Clear Filters' title='Clear Filters'>
-									<i class='mdi-navigation-close'></i>
-								</a>
-							</div>
-							<div>
-								<a class='btn-floating btn-small waves-effect waves-light grey' id='enableDashboard' alt='Enable Dashboard' title='Enable Dashboard'>
-									<i class='mdi-action-track-changes'></i>
-								</a>
-							</div>
-							<div>
-								<a class='btn-floating btn-small waves-effect waves-light blue enabled' id='refreshCharts' alt='Refresh Charts on Filters' title='Refresh Charts on Filters'>
-									<i class='mdi-navigation-refresh'></i>
-								</a>
-							</div>
-							<div class='search' alt='Search Tests' title='Search Tests'>
-								<div class='input-field left'>
-									<input id='searchTests' type='text' class='validate' placeholder='Search Tests...'>
-								</div>
-								<a href="#" class='btn-floating btn-small waves-effect waves-light grey'>
-									<i class='mdi-action-search'></i>
-								</a>
-							</div>
-						</div>
-						<div class='card-panel no-padding-h no-padding-v no-margin-v'>
-							<div class='wrapper'>
-								<ul id='test-collection' class='test-collection'>
-										<li class='collection-item test displayed active pass ' extentid='52e77aab-8e45-451c-bf72-2718359c42fe'>
-											<div class='test-head'>
-												<span class='test-name'>XYZ Project </span>
-												<span class='test-status label right outline capitalize pass'>pass</span>
-												<span class='category-assigned hide '></span>
-											</div>
-											<div class='test-body'>
-												<div class='test-info'>
-													<span title='Test started time' alt='Test started time' class='test-started-time label green lighten-1 text-white'>2024-10-05 16:52:21</span>
-													<span title='Test ended time' alt='Test ended time' class='test-ended-time label red lighten-1 text-white'>2024-10-05 16:52:35</span>
-													<span title='Time taken to finish' alt='Time taken to finish' class='test-time-taken label blue-grey lighten-3 text-white'>0h 0m 13s+264ms</span>
-												</div>
-												<div class='test-desc'></div>
-												<div class='test-attributes'>
-												</div>
-												<div class='test-steps'>
-													<table class='bordered table-results'>
-														<thead>
-															<tr>
-																<th>Status</th>
-																<th>Timestamp</th>
-																<th>Details</th>
-															</tr>
-														</thead>
-														<tbody>
-																<tr>
-																	<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
-																	<td class='timestamp'>16:52:26</td>
-																	<td class='step-details'>Login Correctly to XYZ Bank</td>
-																</tr>
-																<tr>
-																	<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
-																	<td class='timestamp'>16:52:27</td>
-																	<td class='step-details'>Create Deposit Successfully</td>
-																</tr>
-																<tr>
-																	<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
-																	<td class='timestamp'>16:52:30</td>
-																	<td class='step-details'>Create Transaction successfully</td>
-																</tr>
-																<tr>
-																	<td class='status pass' title='pass' alt='pass'><i class='mdi-action-check-circle'></i></td>
-																	<td class='timestamp'>16:52:35</td>
-																	<td class='step-details'>Check Transaction Type Correctly</td>
-																</tr>
-														</tbody>
-													</table>
-													<ul class='collapsible node-list' data-collapsible='accordion'>
-													</ul>
-												</div>
-											</div>
-										</li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div id='test-details-wrapper' class='col _addedCell2'>
-					<div class='contents'>
-						<div class='card-panel details-view'>
-							<h5 class='details-name'></h5>
-							<div class='step-filters right'>
-								<span class='btn-floating btn-small waves-effect waves-light blue' status='info' alt='info' title='info'><i class='mdi-action-info-outline'></i></span>
-								<span class='btn-floating btn-small waves-effect waves-light green' status='pass' alt='pass' title='pass'><i class='mdi-action-check-circle'></i></span>
-								<span class='btn-floating btn-small waves-effect waves-light red' status='fail' alt='fail' title='fail'><i class='mdi-navigation-cancel'></i></span>
-								<span class='btn-floating btn-small waves-effect waves-light red darken-4' status='fatal' alt='fatal' title='fatal'><i class='mdi-navigation-cancel'></i></span>
-								<span class='btn-floating btn-small waves-effect waves-light red lighten-2' status='error' alt='error' title='error'><i class='mdi-alert-error'></i></span>
-								<span class='btn-floating btn-small waves-effect waves-light orange' alt='warning' status='warning' title='warning'><i class='mdi-alert-warning'></i></span>
-								<span class='btn-floating btn-small waves-effect waves-light cyan' status='skip' alt='skip' title='skip'><i class='mdi-content-redo'></i></span>
-								<span class='btn-floating btn-small waves-effect waves-light grey darken-2' status='clear-step-filter' alt='Clear filters' title='Clear filters'><i class='mdi-content-clear'></i></span>
-							</div>
-							<div class='details-container'>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- /tests -->
+#### AbstractPageObject
 
-			<!-- categories -->
-			<!-- /categories -->
+This class has a protected constructor to remove the necessity to init the elements using the Page Factory.
+Also, it sets the timeout from the `timeout` property value located on `general.properties` file.
 
-			<!-- exceptions -->
-			<!-- /exceptions -->
+All the Page Object classes should extend the `AbstractPageObject`.
+It also tries to remove the `driver` object from the Page Object class as much as possible.
 
-			<!-- testrunner logs -->
-			<!-- /testrunner logs -->
+> **Important information**
+>
+> There's a `NavigationPage` on the `common` package inside the Page Objects.
+> Notice that all the pages extend this one instead of the `AbstractPageObject`. I implemented this way:
+> * because the previous and next buttons are fixed on the page (there's no refresh on the page)
+> * to avoid creating or passing the new reference to the `NavigationPage` when we need to hit previous or next buttons
 
-		</div>
-		<!-- /container -->
+As much as possible avoid this strategy to not get an `ElementNotFoundException` or `StaleElementReferenceException`.
+Use this approach if you know that the page does not refresh.
 
-		<!-- test dashboard counts setting -->
-		<div id='test-count-setting' class='modal bottom-sheet'>
-			<div class='modal-content'>
-				<h5>Configure Tests Count Setting</h5>
-				<input name='test-count-setting' type='radio' id='parentWithoutNodes' class='with-gap'>
-				<label for='parentWithoutNodes'>Parent Tests Only (Does not include child nodes in counts)</label>
-				<br>
-				<input name='test-count-setting' type='radio' id='parentWithoutNodesAndNodes' class='with-gap'>
-				<label for='parentWithoutNodesAndNodes'>Parent Tests Without Child Tests + Child Tests</label>
-				<br>
-				<input name='test-count-setting' type='radio' id='childNodes' class='with-gap'>
-				<label for='childNodes'>Child Tests Only</label>
-			</div>
-			<div class='modal-footer'>
-				<a href='#!' class='modal-action modal-close waves-effect waves-green btn'>Save</a>
-			</div>
-		</div>
-		<!-- /test dashboard counts setting -->
+### Execution types
 
-		<!-- filter for step status -->
-		<div id='step-status-filter' class='modal bottom-sheet'>
-			<div class='modal-content'>
-				<h5>Select status</h5>
-				<input checked class='filled-in' type='checkbox' id='step-dashboard-filter-pass'>
-				<label for='step-dashboard-filter-pass'>Pass</label>
-				<br>
-				<input checked class='filled-in' type='checkbox' id='step-dashboard-filter-fail'>
-				<label for='step-dashboard-filter-fail'>Fail</label>
-				<br>
-				<input checked class='filled-in' type='checkbox' id='step-dashboard-filter-fatal'>
-				<label for='step-dashboard-filter-fatal'>Fatal</label>
-				<br>
-				<input checked class='filled-in' type='checkbox' id='step-dashboard-filter-error'>
-				<label for='step-dashboard-filter-error'>Error</label>
-				<br>
-				<input checked class='filled-in' type='checkbox' id='step-dashboard-filter-warning'>
-				<label for='step-dashboard-filter-warning'>Warning</label>
-				<br>
-				<input checked class='filled-in' type='checkbox' id='step-dashboard-filter-skip'>
-				<label for='step-dashboard-filter-skip'>Skipped</label>
-				<br>
-				<input checked class='filled-in' type='checkbox' id='step-dashboard-filter-info'>
-				<label for='step-dashboard-filter-info'>Info</label>
-				<br>
-				<input checked class='filled-in' type='checkbox' id='step-dashboard-filter-unknown'>
-				<label for='step-dashboard-filter-unknown'>Unknown</label>
-			</div>
-			<div class='modal-footer'>
-				<a href='#!' class='modal-action modal-close waves-effect waves-green btn'>Save</a>
-			</div>
-		</div>
-		<!-- /filter for step status -->
+There are different execution types:
 
-		<script src='https://cdn.rawgit.com/anshooarora/extentreports/6032d73243ba4fe4fb8769eb9c315d4fdf16fe68/cdn/extent.js' type='text/javascript'></script>
+- `local`
+- `local-suite`
+- `selenium-grid`
+- `testcontainers`
 
-		<script>$(document).ready(function() { $('.logo span').html('ExtentReports'); });</script>
-		<script>
+The `TargetFactory` class will resolve the target execution based on the `target` property value located
+on `general.properties` file. Its usage is placed on the `BaseWeb` class before each test execution.
 
+#### Local execution
 
-                $(document).ready(function() {
+##### Local machine
 
-                });
+**This approach is automatically used when you run the test class in your IDE.**
 
+When the `target` is `local` the `createLocalDriver()` method is used from the `BrowserFactory` class to return the
+browser instance.
 
-		</script>
-	</body>
-</html>
+The browser used in the test is placed on the `browser` property in the `general.properties` file.
+
+##### Local Suite
+
+It's the same as the Local Execution, where the difference is that the browser is taken from the TestNG suite file instead of the `general.properties`
+file, enabling you to run multi-browser test approach locally.
+
+##### Testcontainers
+
+This execution type uses the [WebDriver Containers](https://www.testcontainers.org/modules/webdriver_containers/) in
+Testcontainers to run the tests in your machine, but using the Selenium docker images for Chrome or Firefox.
+
+When the `target` is `testcontainers` the `TargetFactory` uses the `createTestContainersInstance()` method to initialize
+the container based on the browser set in the `browser` property. Currently, Testcontainers only supports Chrome and
+Firefox.
+
+Example
+```shell
+mvn test -Pweb-execution -Dtarget=testcontainers -Dbrowser=chrome
+```
+
+#### Remote execution
+
+##### Selenium Grid
+
+The Selenium Grid approach executes the tests in remote machines (local or remote/cloud grid).
+When the `target` is `selenium-grid` the `getOptions` method is used from the `BrowserFactory` to return the browser
+option
+class as the remote execution needs the browser capability.
+
+The `DriverFactory` class has an internal method `createRemoteInstance` to return a `RemoteWebDriver` instance based on
+the browser capability.
+
+You must pay attention to the two required information regarding the remote execution: the `grid.url` and `grid.port`
+property values on the `grid.properties` file. You must update these values before the start.
+
+If you are using the `docker-compose.yml` file to start the Docker Selenium grid, the values on the `grid.properties`
+file should work.
+
+You can take a look at the [Execution with Docker Selenium Distributed](#execution-with-docker-selenium-distributed)
+to run the parallel tests using this example.
+
+#### BrowserFactory class
+
+This Factory class is a Java enum that has all implemented browsers to use during the test execution.
+Each browser is an `enum`, and each enum implements four methods:
+
+* `createLocalDriver()`: creates the browser instance for the local execution. The browser driver is automatically
+  managed by the WebDriverManager library
+* `createDriver()`: creates the browser instance for the remote execution
+* `getOptions()`: creates a new browser `Options` setting some specific configurations, and it's used for the remote
+  executions using the Selenium Grid
+* `createTestContainerDriver()` : Creates selenium grid lightweight test container in Standalone mode with Chrome/Firefox/Edge browser support.
+
+You can see that the `createLocalDriver()` method use the `getOptions()` to get specific browser configurations, as
+starting the browser maximized and others.
+
+The `getOptions()` is also used for the remote execution as it is a subclass of the `AbstractDriverOptions` and can be
+automatically accepted as either a `Capabilities` or `MutableCapabilities` class, which is required by
+the `RemoteWebDriver` class.
+
+#### DriverManager class
+
+The
+class [DriverManager](https://github.com/eliasnogueira/selenium-java-lean-test-achitecture/blob/master/src/main/java/com/eliasnogueira/driver/DriverManager.java)
+create a `ThreadLocal` for the WebDriver instance, to make sure there's no conflict when we run it in parallel.
+
+### BaseTest
+
+This testing pattern was implemented on
+the [BaseWeb](https://github.com/eliasnogueira/selenium-java-lean-test-achitecture/blob/master/src/test/java/com/eliasnogueira/BaseWeb.java)
+class to automatically run the pre (setup) and post (teardown) conditions.
+
+The pre-condition uses `@BeforeMethod` from TestNG creates the browser instance based on the values passed either local
+or remote execution.
+The post-condition uses `@AfterMethod` to close the browser instance.
+Both have the `alwaysRun` parameter as `true` to force the run on a pipeline.
+
+Pay attention that it was designed to open a browser instance to each `@Test` located in the test class.
+
+This class also has the `TestListener` annotation which is a custom TestNG listener, and will be described in the next
+section.
+
+### TestListener
+
+The `TestListener` is a class that
+implements [ITestListener](https://testng.org/doc/documentation-main.html#logging-listeners).
+The following method is used to help logging errors and attach additional information to the test report:
+
+* `onTestStart`: add the browser information to the test report
+* `onTestFailure`: log the exceptions and add a screenshot to the test report
+* `onTestSkipped`: add the skipped test to the log
+
+### Logging
+
+All the log is done by the Log4J using the `@Log4j2` annotation.
+
+The `log4j2.properties` has two strategies: console and file.
+A file with all the log information will be automatically created on the user folder with `test_automation.log`
+filename.
+If you want to change it, update the `appender.file.fileName` property value.
+
+The `log.error` is used to log all the exceptions this architecture might throw. Use `log.info` or `log.debug` to log
+important information, like the users, automatically generated by the
+factory [BookingDataFactory](https://github.com/eliasnogueira/selenium-java-lean-test-achitecture/blob/master/src/main/java/com/eliasnogueira/data/BookingDataFactory.java)
+
+### Parallel execution
+
+The parallel test execution is based on
+the [parallel tests](https://testng.org/doc/documentation-main.html#parallel-tests)
+feature on TestNG. This is used by `selenium-grid.xml` test suite file which has the `parallel="tests"` attribute and value,
+whereas `test` item inside the test suite will execute in parallel.
+The browser in use for each `test` should be defined by a parameter, like:
+
+```xml
+
+<parameter name="browser" value="chrome"/>
+```
+
+You can define any parallel strategy.
+
+It can be an excellent combination together with the grid strategy.
+
+#### Execution with Docker Selenium Distributed
+
+This project has the `docker-compose.yml` file to run the tests in a parallel way using Docker Selenium.
+To be able to run it in parallel the file has
+the [Dynamic Grid Implementation](https://github.com/SeleniumHQ/docker-selenium#dynamic-grid-) that will start the
+container on demand.
+
+This means that Docker Selenium will start a container test for a targeting browser.
+
+Please note that you need to do the following actions before running it in parallel:
+
+* Docker installed
+* Pull the images for Chrome Edge and Firefox - Optional
+  * Images are pulled if not available and initial test execution will be slow
+      * `docker pull selenium-standalog-chrome`
+      * `docker pull selenium-standalog-firefox`
+      * `docker pull selenium/standalone-edge`
+  * If you are using a MacBook with either M1 or M2 chip you must check the following experimental feature in Docker Desktop: Settings -> Features in development -> Use Rosetta for x86/amd64 emulation on Apple Silicon
+* Pay attention to the `grid/config.toml` file that has comments for each specific SO
+* Start the Grid by running the following command inside the `grid` folder
+    * `docker-compose up`
+* Run the project using the following command
+```shell
+mvn test -Pweb-execution -Dsuite=selenium-grid -Dtarget=selenium-grid -Dheadless=true
+```
+* Open the [Selenium Grid] page to see the node status
+
+### Configuration files
+
+This project uses a library called [Owner](http://owner.aeonbits.org/). You can find the class related to the property
+file reader in the following classes:
+
+* [Configuration](https://github.com/eliasnogueira/selenium-java-lean-test-achitecture/blob/master/src/main/java/com/eliasnogueira/config/Configuration.java)
+* [ConfigurationManager](https://github.com/eliasnogueira/selenium-java-lean-test-achitecture/blob/master/src/main/java/com/eliasnogueira/config/ConfigurationManager.java)
+
+There are 3 properties (configuration) files located on `src/test/java/resources/`:
+
+* `general.properties`: general configuration as the target execution, browser, base url, timeout, and faker locale
+* `grid.properties`: url and port for the Selenium grid usage
+
+The properties were divided into three different ones to better separate the responsibilities and enable the changes
+easy without having a lot of properties inside a single file.
+
+### Test Data Factory
+
+Is the utilization of the Factory design pattern with the Fluent Builder to generate dynamic data.
+The [BookingDataFactory](https://github.com/eliasnogueira/selenium-java-lean-test-achitecture/blob/master/src/main/java/com/eliasnogueira/data/BookingDataFactory.java)
+has only one factory `createBookingData` returning a `Booking` object with dynamic data.
+
+This dynamic data is generated by JavaFaker filling all the fields using the Build pattern.
+The [Booking](https://github.com/eliasnogueira/selenium-java-lean-test-achitecture/blob/master/src/main/java/com/eliasnogueira/model/Booking.java)
+is the plain Java objects
+and
+the [BookingBuilder](https://github.com/eliasnogueira/selenium-java-lean-test-achitecture/blob/master/src/main/java/com/eliasnogueira/model/BookingBuilder.java)
+is the builder class.
+
+You can see the usage of the Builder pattern in
+the [BookingDataFactory](https://github.com/eliasnogueira/selenium-java-lean-test-achitecture/blob/master/src/main/java/com/eliasnogueira/data/BookingDataFactory.java)
+class.
+
+Reading reference: https://reflectoring.io/objectmother-fluent-builder
+
+### Profiles executors on pom.xml
+
+There is a profile called `web-execution` created to execute the test suite `local.xml`
+inside `src/test/resources/suites` folder.
+To execute this suite, via the command line you can call the parameter `-P` and the profile id.
+
+Eg: executing the multi_browser suite
+
+``` bash
+mvn test -Pweb-execution -Dtestng.dtd.http=true 
+```
+
+If you have more than one suite on _src/test/resources/suites_ folder you can parameterize the xml file name.
+To do this you need:
+
+* Create a property on `pom.xml` called _suite_
+
+```xml
+
+<properties>
+    <suite>local</suite>
+</properties>
+```
+
+* Change the profile id
+
+```xml
+
+<profile>
+    <id>web-execution</id>
+</profile>   
+```
+
+* Replace the xml file name to `${suite}` on the profile
+
+```xml
+
+<configuration>
+    <suiteXmlFiles>
+        <suiteXmlFile>src/test/resources/suites/${suite}.xml</suiteXmlFile>
+    </suiteXmlFiles>
+</configuration>
+```
+
+* Use `-Dsuite=suite_name` to call the suite
+
+````bash
+mvn test -Pweb-execution -Dsuite=parallel
+````
+
+### Pipeline as a code
+
+The two files of the pipeline as a code are inside `pipeline_as_code` folder.
+
+* GitHub Actions to use it inside the GitHub located at `.github\workflows`
+* Jenkins: `Jenkinsfile` to be used on a Jenkins pipeline located at `pipeline_as_code`
+* GitLab CI: `.gitlab-ci.yml` to be used on a GitLab CI `pipeline_as_code`
