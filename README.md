@@ -16,11 +16,11 @@ It has a complete solution to run tests in different ways:
 
 ### Local testing execution example
 
-![Local testing execution example](assets/example_filed_test_with_report.gif)
+![Local testing execution example](example_filed_test_with_report.gif)
 
 ### Parallel testing execution example with Selenium Grid
 
-![Parallel testing execution example with Selenium Grid](assets/selenium-grid-execution.gif)
+![Parallel testing execution example with Selenium Grid](selenium-grid-execution.gif)
 
 ## Languages and Frameworks
 
