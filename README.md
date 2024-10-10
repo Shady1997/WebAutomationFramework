@@ -1,4 +1,4 @@
-# Lean Test Automation Architecture using Java and Selenium WebDriver
+# Test Automation Architecture using Java and Selenium WebDriver
 
 [![Actions Status](https://github.com/eliasnogueira/selenium-java-lean-test-achitecture/workflows/Build%20and%20Test/badge.svg)](https://github.com/eliasnogueira/selenium-java-lean-test-achitecture/actions)
 
