@@ -1,6 +1,6 @@
 # Test Automation Architecture using Java and Selenium WebDriver
 
-[![Actions Status]([https://github.com/eliasnogueira/selenium-java-lean-test-achitecture/workflows/Build%20and%20Test/badge.svg](https://github.com/Shady1997/XYZ-Bank/actions/workflows/demo30.yml/badge.svg))](https://github.com/Shady1997/WebAutomationFramework/actions)
+[![Actions Status](https://github.com/Shady1997/XYZ-Bank/actions/workflows/demo30.yml/badge.svg)](https://github.com/Shady1997/WebAutomationFramework/actions)
 
 **This project delivers to you a complete test architecture for your web tests using the best frameworks and
 practices.**
